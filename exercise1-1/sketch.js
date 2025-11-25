@@ -48,6 +48,7 @@ function draw() {
  * centreY would be 125
  */
 function convertCornerToCenter(coordinate, dimension) {
+    coordinate = coordinate + (dimension / 2)
     return coordinate;
 }
 
@@ -67,6 +68,7 @@ function convertCornerToCenter(coordinate, dimension) {
  * cornerY would be 100
  */
 function convertCenterToCorner(coordinate, dimension) {
+    coordinate = coordinate - (dimension / 2)
     return coordinate;
 }
 
@@ -85,7 +87,7 @@ function convertCenterToCorner(coordinate, dimension) {
  * convertCoordToIndex(0, 1, 100) --> 400
  */
 function convertCoordToIndex(x, y, areaWidth) {
-    return areaWidth * y + x * 4;
+    return (areaWidth * y + x) * 4;
 }
 
 /**
