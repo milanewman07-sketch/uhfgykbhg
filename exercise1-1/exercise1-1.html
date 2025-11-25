@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PDM1 - W9P1 - Exercise 1.1</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../lib/main-styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <script src="../lib/libraries/p5.min.js"></script>
+  </head>
+
+  <body>
+    <h1>Exercise 1.1</h1>
+    <p>Your sketch:</p>
+    <div class="guidance">
+        <h2>Instructions</h2>
+        <div>
+            <p>sketch.js contains almost complete code for a simple game. The focus of this task is (light) 
+                unit testing but you might find it helpful to watch the video of the game play below
+            </p>
+            <p>You don't need to familiarise yourself with the full code to complete this task but you are 
+                of course welcome to do so.
+            </p>
+            <p>In sketch.js, scroll down to find the function called <code>testCoordinateConversion()</code>. You will 
+            find it around line 100. This function contains a handful of tests for a function called <code>convertCoordToIndex()</code>. Run 
+            the tests by opening your browser console and calling the function from the console (type <code>testCoordinateConversion()</code> and press Enter). You 
+            should see output similar to the image below.</p>
+            <p><img src="./assets/initial-tests.png" width="400px" alt="The test output in the browser console shows that two tests pass but two tests fail."/></p>
+            <p>The black text describes the test (the values passed to the function and the expected return value) and the blue number shows the 
+                value returned by the function. If the number returned by the function matches the expected return, the test has passed. If the number 
+                returned by the function does not match the expected value, the test has failed. You should be able to see that two tests 
+                have passed but two have failed. Your first task is to fix the error in the <code>convertCoordToIndex()</code> function. Read the function 
+                documentation to find out what it does. You may need to refer back to the lecture on images, specifically the slides / examples that 
+                explain the image pixel array.
+            </p>
+            <p>Immediately after the <code>draw()</code> function, there are two incomplete functions: <code>convertCornerToCenter()</code> and <code>convertCenterToCorner()</code>. Complete 
+            these functions and write at least two tests for each function inside <code>testCoordinateConversion()</code>. You can use the existing tests for 
+            <code>convertCoordToIndex()</code> as a template. There are no rules for how you write the tests but you should be able to tell if 
+            the function being tested returns the right output given particular input. Run the test function in the console.</p>
+            <p>There is no check file for this exercise because you are writing your own tests.</p>
+            <p>The complete gameplay:</p>
+            <p>
+                <video width="600" height="400" controls>
+                    <source src="./assets/exercise1-1.mov" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </p>
+        </div>
+        <div>
+            <button class="btn btn-primary hint" type="button" data-bs-toggle="collapse" data-bs-target="#hint" aria-expanded="false" aria-controls="hint">
+                Hint
+            </button>
+            <div class="collapse" id="hint">
+                <div class="card card-body">
+                    <h3>Fixing <code>convertCoordToIndex()</code></h3>
+                    <p>There is one tiny step of the calculation missing. To find the missing piece, use your knowledge of how the four colour channels that 
+                        make up a pixel are <a href="https://p5js.org/reference/p5.Image/pixels" target="_blank">flattened into an array</a> 
+                        and the expected return values provided in the tests. Look carefully at the arguments used in the tests that pass versus the tests that 
+                        fail. They will help you figure out which part of the calculation is wrong.
+                    </p>
+                    <h3>Completing <code>convertCornerToCenter()</code> and <code>convertCenterToCorner()</code></h3>
+                    <p>These functions are intended to do a task that you have done many times before, going back to the 
+                        very first practical. Read the JSDoc above each function, including the examples.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="sketch.js"></script>
+  </body>
+</html>

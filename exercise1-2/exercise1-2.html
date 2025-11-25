@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PDM1 - W9P1 - Exercise 1.2</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../lib/main-styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <script src="../lib/libraries/p5.min.js"></script>
+  </head>
+
+  <body>
+    <h1>Exercise 1.2</h1>
+    <p>Your sketch:</p>
+    <div class="guidance">
+        <h2>Instructions</h2>
+        <div>
+            <p>The focus of this exercise is refactoring to simplify code and make it easier to maintain.</p>
+            <p>Copy and paste your solution to the previous exercise into sketch.js in this exercise folder. Take some 
+                time to read through the code and understand how the various functions and classes fit together.
+            </p>
+            <p>There are several places where the code could be refactored to make it "cleaner" and easier to maintain 
+                should new features need to be added in the future. This exercise is <strong>challenging</strong> and requires 
+                reasonable comfort with the concept and use of classes. So, if you're not yet comfortable with classes, consider
+                refactoring some of your own code instead.</p>
+            <p>If you decide to proceed with this exercise, below are some suggestions for refactoring the game code:
+            </p>
+            <ul>
+                <li>The x, y coordinates in the <code>Jewel</code> class represent the top left corner of the jewel but the x, y coordinates in 
+                    the <code>Skull</code> class represent its centre. This means that in several places, the functions you completed 
+                    in the earlier exercise have to be used to translate coordinates from one mode to the other. A cleaner approach 
+                    would be to use the same coordinate approach for both classes. Refactoring the <code>Jewel</code> class to use 
+                    centred coordinates is the recommended option because it will work better with the code that checks if an item 
+                    is under the torch. Note: there is an easy way to do this and a hard way... see the hint for 
+                more guidance.</li>
+                <li>The <code>Jewel</code> and <code>Skull</code> classes have several very similar methods that use different names. Change 
+                the names of methods that serve the same purpose to be the same or similar e.g. rename <code>showSkull()</code> and <code>showJewel()</code> to <code>draw()</code>. 
+            Consistency is preferable because it is easier to remember the names of methods across different classes, especially if the game is extended 
+        (e.g. if a new class of item was added, such as a treasure chest).</li>
+                <li>Currently, the torch effect is made up of two images and a few functions. Consider integrating all of these aspects into 
+                    a <code>Torch</code> class. You will need to decide what data the torch needs to store and what behaviour it should have.</li>
+                <li>After tackling the above steps, you may have unused functions in the sketch. These should be deleted. The test function will no 
+                    longer be relevant so this should be deleted too. Alternatively, you could write new tests that check the accuracy of the refactored 
+                    code.
+                </li>
+            </ul>
+            <p>Expected output:</p>
+            <p>
+                <video width="600" height="400" controls>
+                    <source src="./assets/exercise1-1.mov" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </p>
+        </div>
+        <div>
+            <button class="btn btn-primary hint" type="button" data-bs-toggle="collapse" data-bs-target="#hint" aria-expanded="false" aria-controls="hint">
+                Hint
+            </button>
+            <div class="collapse" id="hint">
+                <div class="card card-body">
+                    <h3>Refactoring the x, y coordinates in the <code>Jewel</code> class</h3>
+                    <p>At the moment, calling <code>new Jewel(100, 200, 80, 50)</code> will create 
+                    a <code>Jewel</code> with a top left corner at 100, 200 and a bottom right corner at 180, 250. When you are 
+                        done, calling <code>new Jewel(100, 200, 80, 50)</code> should create a <code>Jewel</code> centred at 100, 200. This means 
+                    it's top left corner would be at 60, 175 and its bottom right corner would be at 140, 225.</p>
+                    <p>You may be tempted to approach this by editing the coordinates of the triangles that make up the <code>Jewel</code>. This is 
+                    the hard way! Instead, add a little code in the <code>Jewel</code> constructor that will take the values of the <code>x</code>, <code>y</code> 
+                coordinates passed in and convert them to be the corner instead. This means that calling code can use CENTER mode for the coordinates while 
+                the <code>Jewel</code> class can internally continue to use the original approach.</p>
+                    <h3>Making the method names in <code>Jewel</code> and <code>Skull</code> consistent</h3>
+                    <p>There are three main sets of methods that are the same in both classes from a functionality point of view but are named differently in each class:</p>
+                    <ul>
+                        <li>The methods that get the coordinate values.</li>
+                        <li>The methods that draw each item.</li>
+                        <li>The methods that get the point / penalty values (a penalty is the same as points, just negative instead of positive).</li>
+                    </ul>
+                    <p>Rename these methods in both classes so that they are the same. Don't forget to update the code that calls the methods.</p>
+                    <h3>Creating a <code>Torch</code> class</h3>
+                    <p>This is the hardest refactoring task!</p>
+                    <p>The first step is to identify all existing code that has anything to do with the torch effect.</p>
+                    <p>Next, create an outline for the class e.g.:</p>
+                    <pre>class Torch {
+  constructor() {
+
+  }
+}</pre>
+                    <p>Figure out what data the class will need. At the very least, the torch has a location (the spotlight image follows the mouse) and two 
+                        images. You should now be able to add some instance variables, and complete the constructor.
+                    </p>
+                    <p>Figure out what behaviour the class will need--what should the torch be able to do? The existing code that you identified in the 
+                        first step should help but here are some more clues:
+                    </p>
+                    <ul>
+                        <li>To show the torch, you will need a <code>draw()</code> method that draws both images that make up the torch. Before attempting to 
+                        create the transparency effect of the torch, create a <code>Torch</code> object in your main sketch and call it's <code>draw()</code> method so 
+                        that you can see the output.</li>
+                        <li>To make the torch move, you will need a way to set its position.</li>
+                        <li>To create the transparency effect, you will need to move some of the functions currently in the main sketch to inside the class instead.</li>
+                        <li>Finally, update all remaining code that references the torch or some part of the torch.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="sketch.js"></script>
+  </body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PDM1 - W9P1 - Exercise 1.3</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../lib/main-styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <script src="../lib/libraries/p5.min.js"></script>
+  </head>
+
+  <body>
+    <h1>Exercise 1.3</h1>
+    <p>Your sketch:</p>
+    <div class="guidance">
+        <h2>Instructions</h2>
+        <div>
+            <p><strong>This is a challenging exercise.</strong> You can decide whether or not you are ready!</p>
+            <p>Remember the level generator from last practical (W8P2 &gt; exercise1-4)? If not, here is an image of it to jog your memory:</p>
+            <img src="./assets/level-generator.png" width="350px" height="300px" alt="The level generator from last practical">
+            <p>A common reason for refactoring code is to modify existing features or add new features. In lecture, I showed you some (mock) user 
+                feedback for the level generator:
+            </p>
+            <ul>
+                <li>The tiles are too small on larger screens.</li>
+                <li>Users want to be able to use their own sprites.</li>
+                <li>Users want more sprite choices (&gt; 5).</li>
+            </ul>
+            <p>Your task is to refactor the level generator code to address that feedback (assuming that users are willing to edit 
+                the values of a few constants). sketch.js contains the sample solution for the level generator code. Feel free to 
+                replace it with your own code. In the requirements below, assume that the user will run the code on their own computer 
+                and will make a few modifications to get it to work for their project.
+            </p>
+            <p>Here are the requirements:</p>
+            <ul>
+                <li>To adapt the code for their situation, the user should only need to make small edits to the values of global constants or one or two lines of code in the <code>preload()</code> function.</li>
+                <li>In place of the hardcoded images (e.g. grass, rock, sand), users should be able to make a few small modifications to the code to load in any images from the assets 
+                    folder as long as they are all the same size, square, and follow a clear naming convention (see the "PathAndObjects_X.png" images in the 
+                    assets folder for this exercise for examples). They should not need to hardcode the file location of each image.
+                </li>
+                <li>There must be a global constant called <code>GRID_SIZE</code> that stores the size of each image in pixels. Users will be able to modify the value of this constant 
+                to work for their images. For example, the "PathAndObjects_X" images are 32px by 32px so, to load in these images, the GRID_SIZE value can be set to 32.</li>
+                <li>The code should work for differing numbers of tile images. For example, there are 256 "PathAndObjects_X" images in the assets folder, but the user should be able 
+                    to use fewer or more images with minimal need for modification in the code.
+                </li>
+            </ul>
+            <p>Example output (the user has modified the code to create a level generator using the images in the assets folder):</p>
+            <p>
+                <video width="600px" controls>
+                    <source src="./assets/exercise1-3.mov" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </p>
+        </div>
+        <div>
+            <button class="btn btn-primary hint" type="button" data-bs-toggle="collapse" data-bs-target="#hint" aria-expanded="false" aria-controls="hint">
+                Hint
+            </button>
+            <div class="collapse" id="hint">
+                <div class="card card-body">
+                    <p>The key to this task is making good use of global constants and arrays throughout the code. Avoid hardcoding anything other 
+                        than constant values.
+                    </p>
+                    <p>You will need to write code to calculate the size of the canvas (split into a drawing area and a button panel) based on the size and number 
+                        of tile images the user wants to use.
+                    </p>
+                    <p>You will need to make modifications throughout the code to make it as flexible as possible.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="sketch.js"></script>
+  </body>
+</html>
